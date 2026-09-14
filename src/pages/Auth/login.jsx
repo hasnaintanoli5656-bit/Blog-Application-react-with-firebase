@@ -6,8 +6,8 @@ import Input from '../../components/input'
 import Button from '../../components/button'
 import { auth } from '../../firebase/config.js';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-
+import { useNavigate, Link} from 'react-router-dom';
+import SignupWithGoogle from '../../components/signupwithgoogle'
 
 const login = () => {
 
@@ -30,9 +30,12 @@ const login = () => {
 
       if (response.user) {
         toast.success("User Login succesfully!")
-        navigate("/dashboard")
-      }
+        setTimeout(() => {
+          navigate("/")
 
+        }, 3000);
+      }
+     
     } catch (error) {
       console.log(error.message)
       console.log(error.code)
@@ -74,9 +77,20 @@ const login = () => {
             value={form.password}
           />
 
-          <Box className="flex justify-center  mb-5">
+          <Box className="flex justify-center  mb-4">
             <Button handler={loginHandler} title={"LOGIN"} />
           </Box>
+
+          <SignupWithGoogle title={"LOGIN WITH GOOGLE"} />
+
+          <Box className="text-center pt-3">
+          <p className="text-sm text-slate-600">
+            DON,T HAVE AN ACCOUNT ?{' '}
+            <Link to="/signup" className="font-semibold text-blue-600 hover:text-blue-700 hover:underline">
+              GO TO SIGN-UP
+            </Link>
+          </p>
+        </Box>
 
         </Box>
       </Paper>
