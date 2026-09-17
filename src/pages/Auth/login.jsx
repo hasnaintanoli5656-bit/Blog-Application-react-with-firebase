@@ -67,12 +67,14 @@ const login = () => {
           <Input
             label={"Enter Your Email"}
             type={"email"}
+            id="email"
             handler={InputHandler}
             value={form.email}
           />
           <Input
             label={"Enter Your Password"}
             type={"password"}
+            id="password"
             handler={InputHandler}
             value={form.password}
           />

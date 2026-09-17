@@ -1,37 +1,46 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { signOut } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../../components/navbar';
+import BlogCard from '../../components/blogCard'
+import { collection, query, getDocs, doc } from "firebase/firestore";
+import { db } from '../../firebase/config';
 
 
-const home = () => {
-    const navigate = useNavigate();
+const Home = () => {
+    const [allBlogs, setAllBlogs] = useState([])
 
-    // const logoutHandler = async () => {
-    //     try {
-    //         await signOut(auth);
-    //         navigate("/login");
-    //     } catch (error) {
-    //         console.log("Logout error:", error);
-    //     }
-    // };
+    const getBlogaData = async () => {
+        try {
+            const q = query(collection(db, "blogs"));
+
+            const querySnapshot = await getDocs(q);
+            const blogs = querySnapshot.docs.map((doc) => {
+                return {
+                    id: doc.id,
+                    ...doc.data()
+                }
+            });
+            setAllBlogs(blogs)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+
+    useEffect(() => {
+        getBlogaData()
+    }, [])
     return (
-       <>
+        <>
 
-        <Navbar />
+            <Navbar />
+            <div className='flex flex-wrap justify-between gap-5 ml-10 mt-10'>
+                {allBlogs.length > 0 ? allBlogs.map((blog) => (<BlogCard />)) : "blog finding"}
+            </div>
 
-        <h1 className='ml-7 mt-7 text-3xl font-bold'>THIS  IS A  HOME COMPONENT</h1>
-
-        {/* <div className="flex items-center gap-4">
-                    <button
-                        onClick={logoutHandler}
-                        className="bg-red-500 hover:bg-red-600 active:scale-95 text-white font-medium px-4 py-2 rounded-lg text-sm transition-all duration-200 shadow-sm flex items-center gap-2"
-                    >
-                        Logout
-                    </button>
-                </div> */}
-      </>
+        </>
     )
 }
 
-export default home
+export default Home

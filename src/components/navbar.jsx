@@ -14,7 +14,7 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { Link } from 'react-router-dom';
 import { signOut } from "firebase/auth";
-import {auth} from '../firebase/config.js'
+import { auth } from '../firebase/config.js'
 
 const pages = [{ name: "Home", url: "/" }, { name: "Blog", url: "/blog" }];
 
@@ -24,18 +24,18 @@ function navbar() {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const logoutHandler = async () => {
-        try {
-            await signOut(auth);
-            navigate("/login");
-        } catch (error) {
-            console.log("Logout error:", error);
-        }
-    };
+    try {
+      await signOut(auth);
+      navigate("/login");
+    } catch (error) {
+      console.log("Logout error:", error);
+    }
+  };
 
-    const settings = [{ name: 'Profile', handler: () => { } },
-                  { name: 'Account', handler: () => { } },
-                  { name: 'Dashboard', handler: () => { } },
-                  { name: 'Logout', hander: logoutHandler }];
+  const settings = [{ name: 'Profile', handler: () => { } },
+  { name: 'Account', handler: () => { } },
+  { name: 'Dashboard', handler: () => { } },
+  { name: 'Logout', hander: logoutHandler }];
 
 
   const handleOpenNavMenu = (event) => {

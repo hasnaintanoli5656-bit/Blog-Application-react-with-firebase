@@ -18,7 +18,7 @@ export const SaveDataIntoDB = async (name = "",data) => {
         photoUrl : data.photoURL ? data.photoURL : ""
       });
     } catch (error) {
-      toast.warning(error.message)
+      toast.warning(error.message) 
     }
   }
 
@@ -84,19 +84,22 @@ const signup = () => {
 
           <Input
             label={"Enter Your UserName"}
-            type={"username"}
+            type={"text"}
+            id="username"
             handler={InputHandler}
             value={form.username}
           />
           <Input
             label={"Enter Your Email"}
             type={"email"}
+            id="email"
             handler={InputHandler}
             value={form.email}
           />
           <Input
             label={"Enter Your Password"}
             type={"password"}
+            id="password"
             handler={InputHandler}
             value={form.password}
           />

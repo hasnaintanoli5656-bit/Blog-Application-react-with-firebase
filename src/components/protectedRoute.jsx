@@ -3,6 +3,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from '../firebase/config.js'
 import { useNavigate } from 'react-router-dom';
 
+export let userid = null
 const protectedRoute = ({ children }) => {
     const [existuser, setExistUser] = useState(null)
     const [loading, setLoading] = useState(true)
@@ -11,7 +12,7 @@ const protectedRoute = ({ children }) => {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (CurrentUser) => {
             setExistUser(CurrentUser);
-            console.log("current user ya ha ",CurrentUser)
+            userid = CurrentUser.uid
             setLoading(false)
         });
         return () => unsubscribe();

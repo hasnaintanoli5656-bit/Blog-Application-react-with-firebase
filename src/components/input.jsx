@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
-export default function Input({label, type , handler, value}) {
+export default function Input({id ,label, type , handler, value}) {
   return (
     <Box
       className='mb-5 mt-4'
@@ -10,11 +10,10 @@ export default function Input({label, type , handler, value}) {
       <TextField sx={{
         width : "100%"
       }}
-      onChange={(e) => handler(type, e.target.value)}
+      onChange={(e) => handler(id, id === "file" ? e.target.files[0] : e.target.value)}
       id="outlined-basic"
       label={label}
       type={type}
-      value={value}
       variant="outlined" />
     </Box>
   );
