@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
-export default function Input({id ,label, type , handler, value}) {
+export default function Input({id ,label, type , handler, }) {
   return (
     <Box
       className='mb-5 mt-4'
