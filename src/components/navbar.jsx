@@ -17,7 +17,7 @@ import { signOut } from "firebase/auth";
 import { auth } from '../firebase/config.js';
 
 const pages = [
-  { name: "Home", url: "/" }, 
+  { name: "Home", url: "/home" }, 
   { name: "Create Blog", url: "/blog" }
 ];
 
