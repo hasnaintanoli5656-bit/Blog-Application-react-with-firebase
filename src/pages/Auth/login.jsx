@@ -45,6 +45,9 @@ const login = () => {
       ) {
         toast.error("Invalid Credentials!")
       }
+      if(form.email.trim() == "" || form.password.trim() == ""){
+        toast.warning("Please Fill The Inputs")
+      }
     }
   }
 
