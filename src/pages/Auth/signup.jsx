@@ -52,10 +52,11 @@ const signup = () => {
         }, 3000);
       }
     } catch (error) {
-      {
-        form.email.trim() == "" || form.password.trim() == ""
-          ? form.email.trim() == "" || form.password.trim() == ""
-          : "";
+      if (
+        error.message == "Firebase: Error (auth/invalid-email)." ||
+        error.code == "auth/email-already-in-use"
+      ) {
+        toast.warning("Email Is Already Exist!");
       }
       if (form.email.trim() == "" || form.password.trim() == "") {
         toast.warning("Please Fill The Inputs");
